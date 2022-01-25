@@ -1,0 +1,9 @@
+<div class="albums">
+    <div *ngFor="let album of albumsArr" class="card" style="width: 18rem; margin: 5px 0;">
+        <div class="card-body">
+          <h5 class="card-title">{{album.userId | toUsername:usersArr}}</h5>
+          <p class="card-text">{{album.title}}</p>
+          <a [routerLink]="['/user', album.userId]" class="btn btn-primary leftBottom">Go to user</a>
+        </div>
+      </div>
+</div>

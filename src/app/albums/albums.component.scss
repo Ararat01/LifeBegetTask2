@@ -1,0 +1,16 @@
+.albums {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 95%;
+    margin: 0 auto;
+    .card-body {
+        padding-bottom: 60px;
+        position: relative;
+        .leftBottom {
+            position: absolute;
+            left: 15px;
+            bottom: 15px;
+        }
+    }
+}

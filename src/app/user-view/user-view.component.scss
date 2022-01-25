@@ -1,0 +1,8 @@
+.posts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    .card-text.title {
+        font-weight: 500;
+    }
+}

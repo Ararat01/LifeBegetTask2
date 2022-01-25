@@ -1,0 +1,10 @@
+<div class="posts">
+    <div *ngFor="let post of postsArr" class="card" style="width: 18rem; margin: 5px 0;">
+        <div class="card-body">
+          <h5 class="card-title">{{post.userId | toUsername:usersArr}}</h5>
+          <p class="card-text title">{{post.title}}</p>
+          <p class="card-text">{{post.body}}</p>
+          <a [routerLink]="['/user', post.userId]" class="btn btn-primary leftBottom">Go to user</a>
+        </div>
+      </div>
+</div>
