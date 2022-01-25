@@ -1,22 +1,24 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav nav-pills">
-      <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" routerLink="/posts">Posts</a>
+  <div class="navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav nav-pills d-flex flex-row">
+      <li class="nav-item mr-2">
+        <a class="nav-link p-2" routerLinkActive="active" routerLink="/posts">Posts</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLinkActive="active" routerLink="/albums">Albums</a>
+        <a class="nav-link p-2" routerLinkActive="active" routerLink="/albums">Albums</a>
       </li>
     </ul>
   </div>
   <div>
     <ul class="navbar-nav nav-pills">
-      <li class="nav-item">
-        <a class="nav-link btn-primary" routerLink="/login">LogIn</a>
+      <li class="nav-item"  *ngIf="!userLoged; else logoutbtn">
+        <a class="nav-link btn-primary p-2 text-white" routerLink="/login">LogIn</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link btn" (click)="logout()">LogOut</a>
-      </li>
+      <ng-template #logoutbtn>
+        <li class="nav-item">
+          <a class="nav-link btn" (click)="logout()">LogOut</a>
+        </li>
+      </ng-template>
     </ul>
   </div>
 </nav>

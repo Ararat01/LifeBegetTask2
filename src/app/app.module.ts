@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { AlbumViewComponent } from './album-view/album-view.component';
 import { AlbumsComponent } from './albums/albums.component';
 import { PostViewComponent } from './post-view/post-view.component';
 import { PostsComponent } from './posts/posts.component';
@@ -28,16 +27,12 @@ const route: Routes = [
     component: LoginComponent
   },
   {
-    path: 'viewpost',
+    path: 'viewpost/:id',
     component: PostViewComponent
   },
   {
     path: 'albums',
     component: AlbumsComponent
-  },
-  {
-    path: 'viewalbum',
-    component: AlbumViewComponent
   },
   {
     path: 'user/:id',
@@ -53,7 +48,6 @@ const route: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    AlbumViewComponent,
     AlbumsComponent,
     PostViewComponent,
     PostsComponent,

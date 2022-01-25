@@ -12,7 +12,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  userLoged: Boolean = localStorage.getItem('user') !== null ? true : false
+
   logout() {
     localStorage.removeItem('user')
+    location.reload()
   }
 }

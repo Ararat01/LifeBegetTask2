@@ -9,13 +9,6 @@ export class AppComponent implements OnInit {
   title = 'task2';
 
   ngOnInit(): void {
-    this.userLogedCheck();
-  }
-
-  userLogedCheck() {
-    if(localStorage.getItem('user')) {
-      console.log(localStorage.getItem('user'));
-    }
   }
 
 }

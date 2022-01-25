@@ -35,6 +35,14 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
+                            <label>Posts count</label>
+                        </div>
+                        <div class="col-md-6">
+                            <p>{{postsArr.length}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
                             <label>Email</label>
                         </div>
                         <div class="col-md-6">
@@ -79,6 +87,7 @@
             <div class="card-body">
               <p class="card-text title">{{post.title}}</p>
               <p class="card-text">{{post.body}}</p>
+              <a *ngIf="post.userId == currentUser?.id" [routerLink]="['/viewpost', post.id]" class="btn btn-primary rightBottom">Edit post</a>
             </div>
           </div>
     </div>

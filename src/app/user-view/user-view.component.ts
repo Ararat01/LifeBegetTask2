@@ -17,12 +17,22 @@ export class UserViewComponent implements OnInit {
   user!: userModel;
   postsArr: postModel[] = [];
   currentUserId!: number;
+  currentUser: userModel | undefined;
 
   constructor(private activateRoute: ActivatedRoute, private usersRequest: UsersRequestService, private postsRequest: PostRequestService) { }
 
   ngOnInit(): void {
     this.getUserInfo()
     this.getUserPosts()
+    this.currentUser = this.checker()
+  }
+
+
+  checker() {
+    if(localStorage.hasOwnProperty('user')) {
+      const user = localStorage.getItem('user')
+      return user !== null ? JSON.parse(user) : undefined
+    } 
   }
 
 
@@ -30,8 +40,7 @@ export class UserViewComponent implements OnInit {
     this.activateRoute.params.subscribe(({ id }) => {
       this.currentUserId = id
       this.usersRequest.getUsers(`${environment.usersUrl}/${id}`).subscribe((v) => {
-        this.user = v as userModel
-        console.log(this.user);
+        this.user = v as userModel;
       })
     },
     err => console.error(err.message))
