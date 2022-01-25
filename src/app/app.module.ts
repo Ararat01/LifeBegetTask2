@@ -12,6 +12,7 @@ import { ToUsernamePipe } from './pipes/to-username.pipe';
 import { HeaderComponent } from './header/header.component';
 import { ErrorComponent } from './error/error.component';
 import { LoginComponent } from './login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const route: Routes = [
   {
@@ -21,6 +22,10 @@ const route: Routes = [
   {
     path: 'posts',
     component: PostsComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: 'viewpost',
@@ -41,7 +46,8 @@ const route: Routes = [
   {
     path: '**',
     component: ErrorComponent
-  }
+  },
+  
 ];
 
 @NgModule({
@@ -60,7 +66,8 @@ const route: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(route),
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

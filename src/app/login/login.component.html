@@ -1,1 +1,35 @@
-<p>login works!</p>
+<section>
+    <div class="container h-100 pt-4">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-9">
+                <h1 class="text-primary mb-4">Login</h1>
+                <div class="card" style="border-radius: 15px;">
+                    <form [formGroup]="loginForm" (ngSubmit)="submitLogin()" class="card-body">
+                        <div class="row align-items-center pt-4 pb-3">
+                            <div class="col-md-4 ps-5">
+                                <h6 class="mb-0">Username</h6>
+                            </div>
+                            <div class="col-md-8 pe-5">
+                                <input formControlName="username" type="text" class="form-control form-control-lg" />
+                            </div>
+                        </div>
+                        <hr class="mx-n3">
+                        <div class="row align-items-center py-3">
+                            <div class="col-md-4 ps-5">
+                                <h6 class="mb-0">Password</h6>
+                            </div>
+                            <div class="col-md-8 pe-5">
+                                <input formControlName="password" type="password" class="form-control form-control-lg">
+                            </div>
+                        </div>
+                        <hr class="mx-n3">
+                        <div class="px-5 py-4">
+                            <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary btn-lg">Login</button>
+                        </div>  
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
