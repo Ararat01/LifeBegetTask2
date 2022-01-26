@@ -3,8 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Observer } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { userModel } from '../iuser';
-import { postModel } from '../posts/ipost';
-import { PostRequestService } from '../posts/post-request.service';
+import { postModel } from '../postsModule/posts/ipost';
+import { PostRequestService } from '../postsModule/posts/post-request.service';
 import { UsersRequestService } from './../users-request.service';
 
 @Component({

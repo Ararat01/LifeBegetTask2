@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PostRequestService } from './post-request.service';
-import { UsersRequestService } from './../users-request.service';
+import { UsersRequestService } from './../../users-request.service';
 import { postModel } from './ipost'
-import { userModel } from './../iuser'
+import { userModel } from './../../iuser'
 import { environment } from 'src/environments/environment';
 
 

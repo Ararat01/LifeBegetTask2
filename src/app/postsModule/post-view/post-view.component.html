@@ -1,7 +1,7 @@
 <div class="posts">
     <div style="width: 100rem; margin: 5px 0;">
         <div class="card-body w-25">
-          <h5 class="card-title">{{currentUser?.name}}</h5>
+          <h5 class="card-title">{{currentUser?.username}}</h5>
           <p class="card-text title text-dark">{{post?.title}}</p>
           <p class="card-text text-dark">{{post?.body}}</p>
           <a [routerLink]="['/user', post?.userId]" class="btn btn-primary leftBottom">Go to user</a>

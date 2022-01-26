@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { AlbumsRequestService } from './albums-request.service';
-import { UsersRequestService } from './../users-request.service';
 import { albumModel } from './ialbum'
-import { userModel } from './../iuser'
+import { UsersRequestService } from 'src/app/users-request.service';
+import { userModel } from 'src/app/iuser';
 
 @Component({
   selector: 'app-albums',

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { userModel } from '../iuser';
+import { userModel } from '../../iuser';
 import { postModel } from '../posts/ipost';
 import { PostRequestService } from '../posts/post-request.service';
 

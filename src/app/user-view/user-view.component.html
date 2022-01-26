@@ -78,7 +78,7 @@
                 <h5 style="padding: 20px 0;">
                     {{user?.username}}'s posts
                 </h5>
-                <a class="btn btn-primary" routerLink="">Back to posts</a>
+                <a class="btn btn-primary" routerLink="/post">Back to posts</a>
             </div>
         </div>
     </div>
@@ -87,7 +87,7 @@
             <div class="card-body">
               <p class="card-text title">{{post.title}}</p>
               <p class="card-text">{{post.body}}</p>
-              <a *ngIf="post.userId == currentUser?.id" [routerLink]="['/viewpost', post.id]" class="btn btn-primary rightBottom">Edit post</a>
+              <a *ngIf="post.userId == currentUser?.id" [routerLink]="['/post', post.id]" class="btn btn-primary rightBottom">Edit post</a>
             </div>
           </div>
     </div>

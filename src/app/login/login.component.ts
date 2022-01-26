@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
         this.user = res as userModel[];
         if(this.user[0]?.address.zipcode == this.loginForm.value["password"]){
           localStorage.setItem('user', JSON.stringify(this.user[0]))
-          location.assign('/')
+          location.assign('/post')
         }
         else {
           console.log('not found');
@@ -39,8 +39,6 @@ export class LoginComponent implements OnInit {
       },
       err => console.log(err.message)
     )
-    
-    // location.assign('/')
   }
 
 }
