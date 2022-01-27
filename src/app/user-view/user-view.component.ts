@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { createFeatureSelector, createSelector, Store } from '@ngrx/store';
-import { Observer } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { filter, Subscription } from 'rxjs';
 import { userModel } from '../iuser';
 import { postModel } from '../modules/postsModule/posts/ipost';
 import { PostRequestService } from '../modules/postsModule/posts/post-request.service';
@@ -22,16 +21,31 @@ export class UserViewComponent implements OnInit {
   postsArr: postModel[] = [];
   currentUserId!: number;
   currentUser: userModel | undefined;
+  subs!: Subscription 
 
-  
 
-  constructor(private activateRoute: ActivatedRoute, private usersRequest: UsersRequestService, private postsRequest: PostRequestService, private store: Store) { }
+  constructor(
+    private activateRoute: ActivatedRoute,
+    private usersRequest: UsersRequestService,
+    private postsRequest: PostRequestService,
+    private store: Store,
+    private readonly cdr: ChangeDetectorRef,
+    private route: Router
+  ) { }
 
   ngOnInit(): void {
     this.getUserInfo()
     this.getUserPosts()
     this.getLogedUser()
+    this.subs = this.route.events.pipe(
+      filter(e => e instanceof NavigationEnd)
+    )
+    .subscribe(() => {
+      console.log(1);
+      this.getUserPosts()
+    })
   }
+
 
   getUserInfo() {
     this.activateRoute.params.subscribe(({ id }) => {
@@ -40,7 +54,7 @@ export class UserViewComponent implements OnInit {
         this.user = v.find(el => el.id == id) as userModel;
       })
     },
-    err => console.error(err.message))
+      err => console.error(err.message))
   }
 
   getUserPosts() {
@@ -55,6 +69,7 @@ export class UserViewComponent implements OnInit {
     })
   }
 }
+
 
 
 export const featureSelector1 = createFeatureSelector<userModelNg>('users')

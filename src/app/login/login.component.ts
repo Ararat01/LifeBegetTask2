@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
         this.store.dispatch(login({ userlog: this.user }))
       }
     })
-    this.rout.navigateByUrl('post')
+    this.rout.navigateByUrl(`user/${this.user.id}`)
   }
 }
 
