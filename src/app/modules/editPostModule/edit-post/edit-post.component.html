@@ -1,0 +1,35 @@
+<section>
+    <div class="container h-100 pt-4">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-9">
+                <h1 class="text-primary mb-4">Login</h1>
+                <div class="card" style="border-radius: 15px;">
+                    <form [formGroup]="editForm" (ngSubmit)="edit()" class="card-body">
+                        <div class="row align-items-center pt-4 pb-3">
+                            <div class="col-md-4 ps-5">
+                                <h6 class="mb-0">Title</h6>
+                            </div>
+                            <div class="col-md-8 pe-5">
+                                <textarea formControlName="title" type="text" class="form-control" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <hr class="mx-n3">
+                        <div class="row align-items-center py-3">
+                            <div class="col-md-4 ps-5">
+                                <h6 class="mb-0">Body</h6>
+                            </div>
+                            <div class="col-md-8 pe-5">
+                                <textarea formControlName="body" type="text" class="form-control" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <hr class="mx-n3">
+                        <div class="px-5 py-4">
+                            <button [disabled]="editForm.invalid" class="btn btn-primary btn-lg ml-1">Edit post</button>
+                            <hr>
+                        </div>  
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { createFeatureSelector, createSelector, Store } from '@ngrx/store';
-import { environment } from 'src/environments/environment';
+import { Store } from '@ngrx/store';
 import { AlbumsRequestService } from './albums-request.service';
 import { albumModel } from './ialbum'
-import { UsersRequestService } from 'src/app/users-request.service';
+import { UsersRequestService } from 'src/app/services/users-request.service';
 import { userModel } from 'src/app/iuser';
-import { userModelNg } from 'src/app/reducers/users';
-import { albumModelNg } from 'src/app/reducers/albums';
+import { albumSelector, userSelector } from 'src/app/reducers/createdReducers/createdReducers';
 
 @Component({
   selector: 'app-albums',
@@ -37,19 +35,3 @@ export class AlbumsComponent implements OnInit {
   }
 
 }
-
-
-
-export const featureSelector1 = createFeatureSelector<userModelNg>('users')
-
-export const userSelector = createSelector(
-  featureSelector1,
-  state => state.users
-)
-
-export const featureSelector2 = createFeatureSelector<albumModelNg>('albums')
-
-export const albumSelector = createSelector(
-  featureSelector2,
-  state => state.albums
-)

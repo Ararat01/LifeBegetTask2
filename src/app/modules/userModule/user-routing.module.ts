@@ -1,0 +1,22 @@
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { UserViewComponent } from "./user-view/user-view.component";
+
+
+const userRoutes: Routes = [
+    {
+        path: ':id',
+        component: UserViewComponent
+    },
+]
+
+@NgModule({
+    imports: [
+        RouterModule.forChild(userRoutes)
+    ],
+    exports: [
+        RouterModule
+    ]
+})
+
+export class UserRoutingModule { }

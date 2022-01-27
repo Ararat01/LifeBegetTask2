@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { createFeatureSelector, createSelector, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { PostRequestService } from './post-request.service';
-import { UsersRequestService } from './../../../users-request.service';
+import { UsersRequestService } from './../../../services/users-request.service';
 import { postModel } from './ipost'
 import { userModel } from './../../../iuser'
-import { environment } from 'src/environments/environment';
-import { userModelNg } from 'src/app/reducers/users';
-import { postModelNg } from 'src/app/reducers/posts';
+import { postSelector, userSelector } from 'src/app/reducers/createdReducers/createdReducers';
 
 
 @Component({
@@ -39,19 +37,4 @@ export class PostsComponent implements OnInit {
 
 }
 
-
-export const featureSelector1 = createFeatureSelector<userModelNg>('users')
-
-export const userSelector = createSelector(
-  featureSelector1,
-  state => state.users
-)
-
-
-export const featureSelector2 = createFeatureSelector<postModelNg>('posts')
-
-export const postSelector = createSelector(
-  featureSelector2,
-  state => state.posts
-)
 
