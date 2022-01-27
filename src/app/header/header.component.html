@@ -11,8 +11,11 @@
   </div>
   <div>
     <ul class="navbar-nav nav-pills">
+      <li class="nav-item" *ngIf="user !== undefined">
+        <a class="nav-link btn btn-primary p-2 text-white" [routerLink]="['/user', user?.id]">Account</a>
+      </li>
       <li class="nav-item"  *ngIf="!userLoged; else logoutbtn">
-        <a class="nav-link btn-primary p-2 text-white" routerLink="/login">LogIn</a>
+        <a class="nav-link btn btn-primary p-2 text-white" routerLink="/login">LogIn</a>
       </li>
       <ng-template #logoutbtn>
         <li class="nav-item">

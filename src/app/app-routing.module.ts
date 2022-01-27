@@ -3,7 +3,7 @@ import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { UserViewComponent } from './user-view/user-view.component';
 import { ErrorComponent } from './error/error.component';
 import { LoginComponent } from './login/login.component';
-import { PostsComponent } from './postsModule/posts/posts.component';
+import { PostsComponent } from './modules/postsModule/posts/posts.component';
 
 
 const route: Routes = [
@@ -21,13 +21,13 @@ const route: Routes = [
   },
   {
     path: 'albums',
-    loadChildren: () => import('./albumModule/albums.module').then(
+    loadChildren: () => import('./modules/albumModule/albums.module').then(
       module => module.AlbumModule
     ) 
   },
   {
     path: 'post',
-    loadChildren: () => import('./postsModule/posts.module').then(
+    loadChildren: () => import('./modules/postsModule/posts.module').then(
       module => module.PostModule
     ) 
   },
@@ -39,9 +39,7 @@ const route: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(route, {
-      preloadingStrategy: PreloadAllModules
-    })
+    RouterModule.forRoot(route, { scrollPositionRestoration: 'enabled' })//, { preloadingStrategy: PreloadAllModules })
   ],
   exports: [RouterModule]
 })

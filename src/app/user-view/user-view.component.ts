@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { createFeatureSelector, createSelector, Store } from '@ngrx/store';
 import { Observer } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { userModel } from '../iuser';
-import { postModel } from '../postsModule/posts/ipost';
-import { PostRequestService } from '../postsModule/posts/post-request.service';
+import { postModel } from '../modules/postsModule/posts/ipost';
+import { PostRequestService } from '../modules/postsModule/posts/post-request.service';
+import { logedUser } from '../reducers/login';
+import { postModelNg } from '../reducers/posts';
+import { userModelNg } from '../reducers/users';
 import { UsersRequestService } from './../users-request.service';
 
 @Component({
@@ -19,36 +23,58 @@ export class UserViewComponent implements OnInit {
   currentUserId!: number;
   currentUser: userModel | undefined;
 
-  constructor(private activateRoute: ActivatedRoute, private usersRequest: UsersRequestService, private postsRequest: PostRequestService) { }
+  
+
+  constructor(private activateRoute: ActivatedRoute, private usersRequest: UsersRequestService, private postsRequest: PostRequestService, private store: Store) { }
 
   ngOnInit(): void {
     this.getUserInfo()
     this.getUserPosts()
-    this.currentUser = this.checker()
+    this.getLogedUser()
   }
-
-
-  checker() {
-    if(localStorage.hasOwnProperty('user')) {
-      const user = localStorage.getItem('user')
-      return user !== null ? JSON.parse(user) : undefined
-    } 
-  }
-
 
   getUserInfo() {
     this.activateRoute.params.subscribe(({ id }) => {
       this.currentUserId = id
-      this.usersRequest.getUsers(`${environment.usersUrl}/${id}`).subscribe((v) => {
-        this.user = v as userModel;
+      this.store.select(userSelector).subscribe((v) => {
+        this.user = v.find(el => el.id == id) as userModel;
       })
     },
     err => console.error(err.message))
   }
 
   getUserPosts() {
-    this.postsRequest.getPosts(`${environment.postsUrl}?userId=${this.currentUserId}`).subscribe((v) => {
-      this.postsArr = v as postModel[]
+    this.store.select(postSelector).subscribe((v) => {
+      this.postsArr = v.filter(el => el.userId == this.currentUserId) as postModel[];
+    })
+  }
+
+  getLogedUser() {
+    this.store.select(loginSelector).subscribe((v) => {
+      this.currentUser = v as userModel
     })
   }
 }
+
+
+export const featureSelector1 = createFeatureSelector<userModelNg>('users')
+
+export const userSelector = createSelector(
+  featureSelector1,
+  state => state.users
+)
+
+
+export const featureSelector2 = createFeatureSelector<postModelNg>('posts')
+
+export const postSelector = createSelector(
+  featureSelector2,
+  state => state.posts
+)
+
+export const featureSelector3 = createFeatureSelector<logedUser>('logedUser')
+
+export const loginSelector = createSelector(
+  featureSelector3,
+  state => state.user
+)

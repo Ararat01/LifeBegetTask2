@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { createFeatureSelector, createSelector, Store } from '@ngrx/store';
+import { userModel } from '../iuser';
+import { logedUser, logout } from '../reducers/login';
 
 @Component({
   selector: 'app-header',
@@ -7,15 +10,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
+    this.store.select(loginSelector).subscribe(
+      v => this.userLoged = v)
+    this.store.select(loginSelector1).subscribe(
+      v => this.user = v)
   }
 
-  userLoged: Boolean = localStorage.getItem('user') !== null ? true : false
+  test$ = this.store.select(loginSelector)
+
+  user?: userModel
+  userLoged?: Boolean;
 
   logout() {
-    localStorage.removeItem('user')
-    location.reload()
+    this.store.dispatch(logout())
   }
 }
+
+
+export const featureSelector1 = createFeatureSelector<logedUser>('logedUser')
+
+export const loginSelector = createSelector(
+  featureSelector1,
+  state => state.isuserloged
+)
+
+export const loginSelector1 = createSelector(
+  featureSelector1,
+  state => state.user
+)
+

@@ -1,6 +1,5 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
 import { PostViewComponent } from "./post-view/post-view.component";
 import { PostsRoutingModule } from "./posts-routing.module";
 import { PostsComponent } from "./posts/posts.component";
