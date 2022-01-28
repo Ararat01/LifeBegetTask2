@@ -55,7 +55,6 @@ export class EditPostComponent implements OnInit {
   }
 
   edit(): void {
-    console.log(this.post);
     const postsArr = this.allposts.map(el => {
       return el.id == this.post.id ? {
         ...el,
@@ -63,9 +62,8 @@ export class EditPostComponent implements OnInit {
       } : el
     })
     this.store.dispatch(editPost({
-      postEditedArr: {
-        ...postsArr
-      }
+      postEditedArr: postsArr
     }))
+    this.rout.navigateByUrl(`/post/${this.post.id}`)
   }
 }
