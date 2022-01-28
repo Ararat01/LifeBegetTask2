@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { createFeatureSelector, createSelector, Store } from '@ngrx/store';
 import { userModel } from '../iuser';
+import { loginSelector, loginSelectorUser } from '../reducers/createdReducers/createdReducers';
 import { logedUser, logout } from '../reducers/login';
 
 @Component({
@@ -13,9 +14,9 @@ export class HeaderComponent implements OnInit {
   constructor(private store: Store) { }
 
   ngOnInit(): void {
-    this.store.select(loginSelector).subscribe(
+    this.store.select(loginSelectorUser).subscribe(
       v => this.userLoged = v)
-    this.store.select(loginSelector1).subscribe(
+    this.store.select(loginSelector).subscribe(
       v => this.user = v)
   }
 
@@ -30,15 +31,4 @@ export class HeaderComponent implements OnInit {
 }
 
 
-export const featureSelector1 = createFeatureSelector<logedUser>('logedUser')
-
-export const loginSelector = createSelector(
-  featureSelector1,
-  state => state.isuserloged
-)
-
-export const loginSelector1 = createSelector(
-  featureSelector1,
-  state => state.user
-)
 

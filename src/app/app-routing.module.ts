@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { UserViewComponent } from './user-view/user-view.component';
 import { ErrorComponent } from './error/error.component';
 import { LoginComponent } from './login/login.component';
 import { PostsComponent } from './modules/postsModule/posts/posts.component';
@@ -16,8 +15,10 @@ const route: Routes = [
     component: LoginComponent
   },
   {
-    path: 'user/:id',
-    component: UserViewComponent
+    path: 'user',
+    loadChildren: () => import('./modules/userModule/user.module').then(
+      module => module.UserModule
+    ) 
   },
   {
     path: 'albums',
@@ -32,6 +33,12 @@ const route: Routes = [
     ) 
   },
   {
+    path: 'postedit',
+    loadChildren: () => import('./modules/editPostModule/edit-post.module').then(
+      module => module.EditPostModule
+    ) 
+  },
+  {
     path: '**',
     component: ErrorComponent
   }
@@ -43,4 +50,5 @@ const route: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+
+export class AppRoutingModule {}

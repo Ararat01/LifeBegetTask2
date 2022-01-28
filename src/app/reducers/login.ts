@@ -9,13 +9,13 @@ export const logout = createAction('[USER] logout')
 
 export interface logedUser {
     user?: userModel,
-    isuserloged: boolean
+    isUserLoged: boolean
 }
 
 
 export const initStateOfUser: logedUser = {
     user: undefined,
-    isuserloged: false
+    isUserLoged: false
 }
 
 export const loginReducer = createReducer(
@@ -23,12 +23,12 @@ export const loginReducer = createReducer(
     on(login, (state, { userlog }) => ({
         ...state,
         user: userlog,
-        isuserloged: true
+        isUserLoged: true
     })),
     on(logout, state => ({
         ...state,
         user: undefined,
-        isuserloged: false
+        isUserLoged: false
     }))
 )
 

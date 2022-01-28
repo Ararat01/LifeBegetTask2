@@ -9,7 +9,7 @@ import { PostRequestService } from './modules/postsModule/posts/post-request.ser
 import { allPosts } from './reducers/posts';
 import { allAlbums } from './reducers/albums';
 import { allUsers, userModelNg } from './reducers/users';
-import { UsersRequestService } from './users-request.service';
+import { UsersRequestService } from './services/users-request.service';
 
 @Component({
   selector: 'app-root',
